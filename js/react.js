@@ -1,77 +1,78 @@
 console.log("Script is running");
 
-// ===== Hearts header animation =====
+// Arrow glow animation
 const leftArrows = document.querySelectorAll(".left-arrows .arrow");
 const rightArrows = document.querySelectorAll(".right-arrows .arrow");
-
 let step = 0;
 
 function animateArrows() {
-    // Remove glow from all arrows
     [...leftArrows, ...rightArrows].forEach(a => a.classList.remove("glow"));
-
-    // Left arrows: glow from outside to inside (right to left)
-    if (leftArrows[step]) leftArrows[leftArrows.length - 1 - step].classList.add("glow");
-
-    // Right arrows: glow from left to right
-    if (rightArrows[step]) rightArrows[step].classList.add("glow");
-
+    if(leftArrows[step]) leftArrows[leftArrows.length - 1 - step].classList.add("glow");
+    if(rightArrows[step]) rightArrows[step].classList.add("glow");
     step++;
-    if (step >= leftArrows.length) step = 0;
+    if(step >= leftArrows.length) step=0;
 }
-
 setInterval(animateArrows, 300);
 
-// ===== Popup elements =====
+// Popup elements
 const openButton = document.getElementById('open-popup-button');
 const closeButton = document.getElementById('close-popup-button');
 const popupOverlay = document.getElementById('popup-overlay');
 
-// Open popup
-function openPopup() {
-    popupOverlay.classList.add('active');
-}
+// Open/Close popup
+function openPopup() { popupOverlay.classList.add('active'); }
+function closePopup() { popupOverlay.classList.remove('active'); }
+closeButton.addEventListener('click', closePopup);
+window.addEventListener('click', e=>{ if(e.target===popupOverlay) closePopup(); });
 
-// Close popup
-function closePopup() {
-    popupOverlay.classList.remove('active');
-}
-
-// Close popup if user clicks overlay
-window.addEventListener('click', function(event) {
-    if (event.target === popupOverlay) {
-        closePopup();
-    }
-});
-
-// ===== Feedback email sending =====
+// Feedback email
 const feedbackForm = document.getElementById("feedback-form");
 const feedbackInput = document.getElementById("feedback-input");
 const noButton = document.getElementById("no-button");
 
-// Send feedback and optionally open popup after submit
-function sendFeedback(answer, openPopupAfter = false) {
+function sendFeedback(answer, openPopupAfter=false){
     feedbackInput.value = answer;
-
-    if (openPopupAfter) {
-        // Listen for iframe load to know submission finished
-        const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-        const onLoad = () => {
-            openPopup(); // show popup after email sent
-            iframe.removeEventListener('load', onLoad);
-        };
-        iframe.addEventListener('load', onLoad);
-    }
-
     feedbackForm.submit();
+    if(openPopupAfter){
+        setTimeout(()=>{ openPopup(); }, 300);
+    }
 }
 
-// YES button → send feedback + popup
-openButton.addEventListener("click", () => {
+// Heart burst effect
+function heartBurst(){
+    const burstContainer = document.getElementById("heart-burst");
+    burstContainer.innerHTML = "";
+    for(let i=0;i<15;i++){
+        const heart=document.createElement("span");
+        heart.className="heart-burst-heart";
+        heart.textContent="❤";
+        const x=(Math.random()-0.5)*200+"px";
+        const y=(Math.random()-0.5)*200+"px";
+        heart.style.setProperty("--x",x);
+        heart.style.setProperty("--y",y);
+        burstContainer.appendChild(heart);
+        setTimeout(()=>heart.remove(),1000);
+    }
+}
+
+// YES button → send + popup + heart burst
+openButton.addEventListener("click",()=>{
     sendFeedback("Yes", true);
+    heartBurst();
 });
 
-// NO button → send feedback only
-noButton.addEventListener("click", () => {
-    sendFeedback("No");
+// NO button → send only
+noButton.addEventListener("click", () => { sendFeedback("No"); });
+
+// Floating hearts setup
+const hearts = document.querySelectorAll(".hearts span");
+
+hearts.forEach(heart => {
+    const size = Math.random() * 20 + 10; // 10px–30px
+    const left = Math.random() * 100; // random horizontal position
+    const duration = Math.random() * 5 + 5; // animation speed
+
+    heart.style.fontSize = size + "px";
+    heart.style.left = left + "vw";
+    heart.style.animationDuration = duration + "s";
 });
