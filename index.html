@@ -5,58 +5,36 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine template by Mofokeng Motlalepule</title>
 <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
 <header class="love-header">
-
     <img src="pics/left.jpg" class="photo left">
-
     <div class="center-area">
-<!--reversed errow starts-->
         <div class="arrows left-arrows">
             <span class="arrow">➤</span>
             <span class="arrow">➤</span>
             <span class="arrow">➤</span>
         </div>
-<!--reversed errow ends-->
-
         <div class="heart">❤</div>
-
         <div class="arrows right-arrows">
             <span class="arrow">➤</span>
             <span class="arrow">➤</span>
             <span class="arrow">➤</span>
         </div>
-
     </div>
-
     <img src="pics/right.png" alt="" class="photo right">
-
 </header>
 
-
-<!-- Floating hearts background -->
+<!-- Floating hearts -->
 <div class="hearts">
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
-    <span>❤</span>
+    <span>❤</span><span>❤</span><span>❤</span><span>❤</span>
+    <span>❤</span><span>❤</span><span>❤</span><span>❤</span>
+    <span>❤</span><span>❤</span><span>❤</span><span>❤</span>
 </div>
 
-<!-- My Addition-->
 <main class="container">
-
     <h1 class="title">
         <span>Mpho,</span>
         <span>Will You Be My</span>
@@ -74,43 +52,38 @@
         You’re always with me, and I love you endlessly.
     </p>
 
-    <!-- Added button functions -->
     <div class="buttons">
-
         <button id="open-popup-button">❤ Yes, of course!</button>
-    
-        <div id="popup-overlay">
-            <div class="popup-content">
-                <h2>Yay! ❤️</h2>
-                <p>Your answer was sent!</p>
-                <button id="close-popup-button">Close</button>
-            </div>
-        </div>
-    
         <button class="no" id="no-button">No</button>
-    
     </div>
-    
-    <!-- Added button functions -->
 
+    <!-- Popup -->
+    <div id="popup-overlay">
+        <div class="popup-content">
+            <h2>Yay! ❤️</h2>
+            <p>Your answer was sent!</p>
+
+            <!-- Heart burst container -->
+            <div id="heart-burst"></div>
+
+            <button id="close-popup-button">Close</button>
+        </div>
+    </div>
 </main>
 
-<!--End of Addition-->
-
-<!-- Hidden feedback form -->
 <!-- Hidden feedback form -->
 <iframe name="hidden_iframe" style="display:none;"></iframe>
 
 <form id="feedback-form"
-      action="https://formsubmit.co/m.motlalepule@outlook.com"
+      action="https://formsubmit.co/pule.zaar@gmail.com"
       method="POST"
       target="hidden_iframe"
       style="display:none;">
-
     <input type="hidden" name="feedback" id="feedback-input">
     <input type="hidden" name="_subject" value="Valentine Feedback">
     <input type="hidden" name="_template" value="table">
 </form>
+
 <script src="js/react.js"></script>
 </body>
 </html>
