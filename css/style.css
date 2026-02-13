@@ -80,7 +80,7 @@ h2{
     margin: auto;
     padding: 40px 20px;
     text-align: center;
-    min-height: 60vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -222,3 +222,4 @@ button:hover { transform:scale(1.05); }
 
     button { width:auto; min-width:220px; }
 }
+
