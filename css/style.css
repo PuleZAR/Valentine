@@ -1,13 +1,10 @@
-/* Reset 2*/
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Reset */
+* { margin:0; 
+    padding:0; 
+    box-sizing:border-box;
 }
 
 /* Base */
-
 body {
     font-family: system-ui, -apple-system, sans-serif;
     background: #0b0b0b;
@@ -16,21 +13,25 @@ body {
     overflow: hidden;
 }
 
-
-/*header of love and pictures starts here*/
-.love-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
-    
+p{
+    color: white;
 }
 
-/* Images */
+h2{
+    color: black;
+}
 
+.popup-content p {
+    color: black;
+}
+/* Header & photos */
+.love-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
 .photo {
     width: 80px;
     height: 80px;
@@ -40,84 +41,38 @@ body {
 }
 
 /* Center area */
-
 .center-area {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
 }
-
-/* Heart */
-
 .heart {
     font-size: 60px;
     animation: heartGlow 1.5s infinite alternate;
 }
-
 @keyframes heartGlow {
-    from {
-        color: #8b0000;
-        text-shadow: 0 0 10px #8b0000;
-    }
-    to {
-        color: red;
-        text-shadow: 0 0 25px red;
-    }
+    from { color:#8b0000; text-shadow:0 0 10px #8b0000; }
+    to { color:red; text-shadow:0 0 25px red; }
 }
 
 /* Arrows */
-
 .arrow {
     font-size: 28px;
-    color: white;
-    opacity: 0.4;
+    color:white;
+    opacity:0.4;
     transition: all 0.3s;
 }
-
 .arrow.glow {
-    opacity: 1;
-    text-shadow: 0 0 15px #ff4d6d;
+    opacity:1;
+    text-shadow:0 0 15px #ff4d6d; }
+
+.left-arrows .arrow { 
+    display:inline-block; 
+    transform: scaleX(-1); 
 }
 
-/*added code*/
-.left-arrows .arrow {
-    display: inline-block; /* Required for transform to work on span */
-    transform: scaleX(-1);
-  }
-
-/* Responsive */
-
-@media (max-width: 480px) {
-    .heart {
-        font-size: 48px;
-    }
-
-    .photo {
-        width: 60px;
-        height: 60px;
-    }
-
-    .arrow {
-        font-size: 24px;
-    }
-}
-
-/* header of love and pictures ends here*/
-
-p {
-    color: white;
-}
-
-h2 {color:black;
-}
-
-.popup-content p {
-    color: black;
-}
-
-/* Layout */
-
+/* Main content */
 .container {
     position: relative;
     z-index: 2;
@@ -125,169 +80,145 @@ h2 {color:black;
     margin: auto;
     padding: 40px 20px;
     text-align: center;
-
     min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-/* Title */
-
-.title span {
-    display: block;
-    font-size: clamp(30px, 5vw, 56px);
-    font-weight: 700;
+.title span { 
+    display: block; 
+    font-size: clamp(30px,5vw,56px); 
+    font-weight: 700; 
 }
 
-.valentine {
-    color: red;
-}
+.valentine { color:red; }
 
-/* Message */
-
-.message {
-    margin: 0px 0 40px;
+.message { 
+    margin-bottom: 5px;
     font-size: 15px;
-    line-height: 1.6;
-    opacity: 0.9;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    line-height:1.6; 
+    opacity:0.9; 
 }
 
 /* Buttons */
-
 .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
 }
-
 button {
-    border: none;
-    padding: 16px 22px;
-    font-size: 18px;
-    border-radius: 40px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 320px;
+    border:none;
+    padding:16px 22px;
+    font-size:18px;
+    border-radius:40px;
+    cursor:pointer;
+    width:100%;
+    max-width:320px;
     transition: transform 0.2s ease;
 }
 
-button:hover {
-    transform: scale(1.05);
-}
-
+button:hover { transform:scale(1.05); }
 #open-popup-button {
-    background: #ff2b2b;
-    color: white;
+    background:#ff2b2b; 
+    color:white; 
+}
+.no { 
+    background:#1e1e1e; 
+    color:white; 
 }
 
+/* Popup */
 #popup-overlay {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    display:none;
+    position:fixed;
+    inset:0;
+    justify-content:center;
+    align-items:center;
+    background: rgba(0,0,0,0.5);
+    z-index:1000;
+    opacity:0;
+    transition: opacity 0.3s ease;
+}
+#popup-overlay.active { 
+    display:flex; 
+    opacity:1; 
 }
 
 .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 80%;
-    max-width: 400px;
-    transform: scale(0.9); /* Initial state for animation */
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    width:80%; max-width:400px;
+    transform:scale(0.9);
     transition: transform 0.3s ease-out;
 }
-
-/* Class added by JavaScript to show the popup and apply animation */
-#popup-overlay.active .popup-content {
-    transform: scale(1);
+#popup-overlay.active .popup-content { 
+    transform:scale(1); 
 }
 
-#popup-overlay.active {
-    display: flex;
+#close-popup-button { 
+    margin-top:15px; 
+    background:#dc3545; 
+    color:white; 
 }
 
-#close-popup-button {
-    margin-top: 15px;
-    background-color: #dc3545;
+/* Heart burst */
+#heart-burst { 
+    position:absolute; 
+    top:50%; 
+    left:50%; 
+    width:0; 
+    height:0; 
+    pointer-events:none; 
+    z-index:2000; 
 }
 
-
-.no {
-    background: #1e1e1e;
-    color: white;
+.heart-burst-heart {
+    position:absolute;
+    font-size:18px;
+    color:red;
+    opacity:0;
+    transform:translate(-50%, -50%) scale(0);
+    animation: burst 1s forwards;
+}
+@keyframes burst {
+    0% { opacity:1; transform:translate(-50%,-50%) scale(0);}
+    50% { opacity:1; transform:translate(var(--x), var(--y)) scale(1);}
+    100% { opacity:0; transform:translate(var(--x), var(--y)) scale(0);}
 }
 
-/* Floating scattered hearts */
-
-.hearts {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
+/* Floating hearts */
+.hearts { 
+    position:fixed; 
+    inset:0; 
+    z-index:1; 
+    overflow:hidden; 
+    pointer-events:none; 
 }
 
-.hearts span {
-    position: absolute;
-    bottom: -10%;
-    color: rgba(255, 0, 0, 0.25);
-    animation: floatUp linear infinite;
+.hearts span { 
+    position:absolute; 
+    bottom:-10%; 
+    color: rgba(255,0,0,0.25); 
+    animation: floatUp linear infinite; 
 }
 
-/* Individual heart styles */
+@keyframes floatUp { from{transform:translateY(0) rotate(0deg); opacity:0;} 20%{opacity:1;} to{transform:translateY(-120vh) rotate(360deg); opacity:0;} }
 
-.hearts span:nth-child(1){ left:5%; animation-duration:12s; font-size:18px;}
-.hearts span:nth-child(2){ left:12%; animation-duration:9s; font-size:24px;}
-.hearts span:nth-child(3){ left:20%; animation-duration:14s;}
-.hearts span:nth-child(4){ left:30%; animation-duration:10s;}
-.hearts span:nth-child(5){ left:40%; animation-duration:13s;}
-.hearts span:nth-child(6){ left:50%; animation-duration:8s; font-size:26px;}
-.hearts span:nth-child(7){ left:60%; animation-duration:15s;}
-.hearts span:nth-child(8){ left:70%; animation-duration:11s;}
-.hearts span:nth-child(9){ left:80%; animation-duration:9s;}
-.hearts span:nth-child(10){ left:90%; animation-duration:13s;}
-.hearts span:nth-child(11){ left:25%; animation-duration:12s;}
-.hearts span:nth-child(12){ left:65%; animation-duration:10s;}
-
-@keyframes floatUp {
-    from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
+/* Responsive */
+@media (max-width:480px) {
+    .heart { font-size:48px; }
+    .photo { width:60px; height:60px; }
+    .arrow { font-size:24px; }
+}
+@media (min-width:768px) {
+    .buttons { 
+        flex-direction:row; 
+        justify-content:center; 
     }
 
-    20% {
-        opacity: 1;
-    }
-
-    to {
-        transform: translateY(-120vh) rotate(360deg);
-        opacity: 0;
-    }
+    button { width:auto; min-width:220px; }
 }
-
-/* Desktop adjustments */
-
-@media (min-width: 768px) {
-
-    .buttons {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    button {
-        width: auto;
-        min-width: 220px;
-    }
-}
-
-
