@@ -1,0 +1,224 @@
+/* Reset */
+* { margin:0; 
+    padding:0; 
+    box-sizing:border-box;
+}
+
+/* Base */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #0b0b0b;
+    color: white;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+p{
+    color: white;
+}
+
+h2{
+    color: black;
+}
+
+.popup-content p {
+    color: black;
+}
+/* Header & photos */
+.love-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+.photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+}
+
+/* Center area */
+.center-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.heart {
+    font-size: 60px;
+    animation: heartGlow 1.5s infinite alternate;
+}
+@keyframes heartGlow {
+    from { color:#8b0000; text-shadow:0 0 10px #8b0000; }
+    to { color:red; text-shadow:0 0 25px red; }
+}
+
+/* Arrows */
+.arrow {
+    font-size: 28px;
+    color:white;
+    opacity:0.4;
+    transition: all 0.3s;
+}
+.arrow.glow {
+    opacity:1;
+    text-shadow:0 0 15px #ff4d6d; }
+
+.left-arrows .arrow { 
+    display:inline-block; 
+    transform: scaleX(-1); 
+}
+
+/* Main content */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title span { 
+    display: block; 
+    font-size: clamp(30px,5vw,56px); 
+    font-weight: 700; 
+}
+
+.valentine { color:red; }
+
+.message { 
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    line-height:1.6; 
+    opacity:0.9; 
+}
+
+/* Buttons */
+.buttons {
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
+}
+button {
+    border:none;
+    padding:16px 22px;
+    font-size:18px;
+    border-radius:40px;
+    cursor:pointer;
+    width:100%;
+    max-width:320px;
+    transition: transform 0.2s ease;
+}
+
+button:hover { transform:scale(1.05); }
+#open-popup-button {
+    background:#ff2b2b; 
+    color:white; 
+}
+.no { 
+    background:#1e1e1e; 
+    color:white; 
+}
+
+/* Popup */
+#popup-overlay {
+    display:none;
+    position:fixed;
+    inset:0;
+    justify-content:center;
+    align-items:center;
+    background: rgba(0,0,0,0.5);
+    z-index:1000;
+    opacity:0;
+    transition: opacity 0.3s ease;
+}
+#popup-overlay.active { 
+    display:flex; 
+    opacity:1; 
+}
+
+.popup-content {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    width:80%; max-width:400px;
+    transform:scale(0.9);
+    transition: transform 0.3s ease-out;
+}
+#popup-overlay.active .popup-content { 
+    transform:scale(1); 
+}
+
+#close-popup-button { 
+    margin-top:15px; 
+    background:#dc3545; 
+    color:white; 
+}
+
+/* Heart burst */
+#heart-burst { 
+    position:absolute; 
+    top:50%; 
+    left:50%; 
+    width:0; 
+    height:0; 
+    pointer-events:none; 
+    z-index:2000; 
+}
+
+.heart-burst-heart {
+    position:absolute;
+    font-size:18px;
+    color:red;
+    opacity:0;
+    transform:translate(-50%, -50%) scale(0);
+    animation: burst 1s forwards;
+}
+@keyframes burst {
+    0% { opacity:1; transform:translate(-50%,-50%) scale(0);}
+    50% { opacity:1; transform:translate(var(--x), var(--y)) scale(1);}
+    100% { opacity:0; transform:translate(var(--x), var(--y)) scale(0);}
+}
+
+/* Floating hearts */
+.hearts { 
+    position:fixed; 
+    inset:0; 
+    z-index:1; 
+    overflow:hidden; 
+    pointer-events:none; 
+}
+
+.hearts span { 
+    position:absolute; 
+    bottom:-10%; 
+    color: rgba(255,0,0,0.25); 
+    animation: floatUp linear infinite; 
+}
+
+@keyframes floatUp { from{transform:translateY(0) rotate(0deg); opacity:0;} 20%{opacity:1;} to{transform:translateY(-120vh) rotate(360deg); opacity:0;} }
+
+/* Responsive */
+@media (max-width:480px) {
+    .heart { font-size:48px; }
+    .photo { width:60px; height:60px; }
+    .arrow { font-size:24px; }
+}
+@media (min-width:768px) {
+    .buttons { 
+        flex-direction:row; 
+        justify-content:center; 
+    }
+
+    button { width:auto; min-width:220px; }
+}
