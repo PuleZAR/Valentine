@@ -1,7 +1,7 @@
 /* Reset */
-* { margin:0; 
-    padding:0; 
-    box-sizing:border-box;
+* { margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
 }
 
 /* Base */
@@ -222,4 +222,5 @@ button:hover { transform:scale(1.05); }
 
     button { width:auto; min-width:220px; }
 }
+
 
